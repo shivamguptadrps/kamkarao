@@ -25,5 +25,6 @@
     {% if error %}<p class="error">{{ error }}</p>{% endif %}
   </div>
   <button class="btn btn-lg btn-block" type="submit"><span class="spinner"></span><span class="btn-label">{% if OTP_MODE == "none" %}{% translate "Continue" %}{% else %}{% translate "Send OTP" %}{% endif %}</span></button>
+  <p class="tiny muted center"><a class="link-btn" href="/admin/" rel="nofollow" aria-label="{% translate "Staff or admin login" %}">{% translate "Are you admin?" %}</a></p>
   <p class="tiny muted center">{% icon "lock" "icon-sm" %} {% if OTP_MODE == "none" %}{% translate "You stay logged in for 30 days." %}{% else %}{% translate "One OTP, stays logged in for 30 days." %}{% endif %}</p>
 </form>
