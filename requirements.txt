@@ -1,0 +1,10 @@
+Django>=5.2,<5.3
+Pillow>=11.0
+whitenoise>=6.7
+dj-database-url>=2.2
+psycopg[binary]>=3.2
+gunicorn>=23.0; sys_platform != "win32"
+polib>=1.2
+django-unfold==0.110.0
+# Only needed if you store photos on Cloudflare R2 / AWS S3 (S3_BUCKET in .env):
+django-storages[s3]>=1.14

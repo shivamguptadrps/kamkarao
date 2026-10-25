@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n kk %}
+{% block title %}{% translate "Report a problem" %} | KamKarao{% endblock %}
+{% block head %}<meta name="robots" content="noindex">{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="form-card">
+    <section class="panel enter">
+      <div class="row gap-12" style="margin-bottom:12px">{% include "partials/avatar.html" with p=p %}<div class="stack"><span class="pname">{{ p.name }}</span><span class="small muted">{{ p.category.name }}</span></div></div>
+      <h1 class="h3">{% translate "What happened?" %}</h1>
+      <p class="muted small" style="margin:4px 0 16px">{% translate "We call both you and the worker before deciding. Serious issues lead to removal." %}</p>
+      <form method="post" class="stack gap-16">
+        {% csrf_token %}
+        <div class="stack gap-8">
+          {% for val, label in reasons %}<label class="choice"><input type="radio" name="reason" value="{{ val }}" required><span>{% translate label %}</span></label>{% endfor %}
+        </div>
+        <div class="field"><label for="details">{% translate "Details (optional)" %}</label><textarea id="details" name="details" class="textarea" maxlength="1000"></textarea></div>
+        {% if not customer %}
+        <div class="field"><label for="phone">{% translate "Your mobile number" %}</label><div class="input-phone"><span>+91</span><input id="phone" name="phone" type="tel" inputmode="numeric" maxlength="14" required></div></div>
+        {% endif %}
+        {% if error %}<p class="error">{{ error }}</p>{% endif %}
+        <button class="btn btn-dark btn-lg btn-block" type="submit">{% translate "Send report" %}</button>
+      </form>
+    </section>
+  </div>
+</div>
+{% endblock %}

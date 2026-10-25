@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% load i18n kk %}
+{% block title %}{% blocktranslate with c=category.name city=current_city.name %}{{ c }} in {{ city }} – KamKarao{% endblocktranslate %}{% endblock %}
+{% block description %}{% blocktranslate with c=category.name city=current_city.name %}Checked {{ c }} near your mohalla in {{ city }}. See ratings, starting prices and call directly.{% endblocktranslate %}{% endblock %}
+{% block content %}
+<section class="cat-hero">
+  {% if category.image %}<img class="bg" src="{{ category.image.url }}" alt="">{% endif %}
+  <div class="container stack gap-12">
+    <nav class="crumbs" aria-label="{% translate "Breadcrumb" %}"><a href="{% url 'home' %}">{% translate "Home" %}</a>{% icon "right" "icon-sm" %}<span>{{ current_city.name }}</span></nav>
+    <div class="row gap-12 wrap between">
+      <h1 class="enter">{{ category.name }}</h1>
+      <button class="area-pill" type="button" hx-get="{% url 'area_sheet' %}?next={{ request.get_full_path|urlencode }}" hx-target="#sheet-body">
+        {% icon "pin" "icon-sm" %}<span class="label">{% if current_area %}{{ current_area.name }}{% else %}{% translate "Choose mohalla" %}{% endif %}</span>{% icon "down" "icon-sm" %}
+      </button>
+    </div>
+    {% if category.tagline %}<p class="enter" style="--i:1;opacity:.9">{{ category.tagline }}</p>{% endif %}
+    {% if rate_items %}
+    <div class="rate-strip enter" style="--i:2">
+      {% for r in rate_items %}<div><b>₹{{ r.price_from }}{% if r.unit %}<span class="tiny" style="font-weight:500;opacity:.8"> /{{ r.unit }}</span>{% endif %}</b>{{ r.name }}</div>{% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<div id="listing">
+<div class="filterbar" id="filters">
+  <div class="container">
+    <div class="hscroll" role="group" aria-label="{% translate "Type of work" %}">
+      <a class="chip{% if not filters.sub %} is-on{% endif %}" href="{% qs_set 'sub' '' %}"
+         hx-get="{% qs_set 'sub' '' %}" hx-target="#listing" hx-select="#listing" hx-swap="outerHTML" hx-push-url="true">{% translate "All" %}</a>
+      {% for s in subcategories %}
+      {% with sid=s.pk|stringformat:"d" %}
+      <a class="chip{% if filters.sub == s.pk %} is-on{% endif %}" href="{% qs_set 'sub' sid %}"
+         hx-get="{% qs_set 'sub' sid %}" hx-target="#listing" hx-select="#listing" hx-swap="outerHTML" hx-push-url="true">{{ s.name }}</a>
+      {% endwith %}
+      {% endfor %}
+    </div>
+    <div class="hscroll" role="group" aria-label="{% translate "Filters" %}">
+      <a class="chip{% if filters.today %} is-on{% endif %}" href="{% qs_toggle 'today' %}" hx-get="{% qs_toggle 'today' %}" hx-target="#listing" hx-select="#listing" hx-swap="outerHTML" hx-push-url="true">{% icon "clock" %}{% translate "Available today" %}</a>
+      <a class="chip{% if filters.verified %} is-on{% endif %}" href="{% qs_toggle 'verified' %}" hx-get="{% qs_toggle 'verified' %}" hx-target="#listing" hx-select="#listing" hx-swap="outerHTML" hx-push-url="true">{% icon "shield" %}{% translate "Checked" %}</a>
+      <a class="chip{% if filters.rated %} is-on{% endif %}" href="{% qs_toggle 'rated' %}" hx-get="{% qs_toggle 'rated' %}" hx-target="#listing" hx-select="#listing" hx-swap="outerHTML" hx-push-url="true">{% icon "star" %}4.5+</a>
+      <a class="chip{% if filters.female %} is-on{% endif %}" href="{% qs_toggle 'female' %}" hx-get="{% qs_toggle 'female' %}" hx-target="#listing" hx-select="#listing" hx-swap="outerHTML" hx-push-url="true">{% icon "woman" %}{% translate "Woman provider" %}</a>
+    </div>
+  </div>
+</div>
+
+<div class="container" id="page-results">
+  <div class="results-meta">
+    <p class="muted">
+      {% blocktranslate count n=providers|length %}<b class="strong">{{ n }}</b> worker found{% plural %}<b class="strong">{{ n }}</b> workers found{% endblocktranslate %}
+      {% if current_area %}· {% blocktranslate with a=current_area.name %}nearest to {{ a }} first{% endblocktranslate %}{% endif %}
+    </p>
+    <form method="get" class="row gap-8" hx-get="{{ request.path }}" hx-target="#listing" hx-select="#listing" hx-swap="outerHTML" hx-push-url="true" hx-trigger="change">
+      {% for k, v in request.GET.items %}{% if k != "sort" and k != "partial" %}<input type="hidden" name="{{ k }}" value="{{ v }}">{% endif %}{% endfor %}
+      <label for="sort" class="small muted">{% translate "Sort" %}</label>
+      <select id="sort" name="sort" class="select">
+        <option value="near" {% if filters.sort == "near" %}selected{% endif %}>{% translate "Nearest" %}</option>
+        <option value="rating" {% if filters.sort == "rating" %}selected{% endif %}>{% translate "Top rated" %}</option>
+        <option value="exp" {% if filters.sort == "exp" %}selected{% endif %}>{% translate "Most experienced" %}</option>
+      </select>
+      <noscript><button class="btn btn-sm">OK</button></noscript>
+    </form>
+  </div>
+
+  {% if not current_area %}
+  <div class="alert alert-info row gap-8 wrap between" style="margin-bottom:14px">
+    <span class="row gap-8">{% icon "pin" %}{% translate "Choose your mohalla to see the nearest workers first." %}</span>
+    <button class="btn btn-sm" type="button" hx-get="{% url 'area_sheet' %}?next={{ request.get_full_path|urlencode }}" hx-target="#sheet-body">{% translate "Choose mohalla" %}</button>
+  </div>
+  {% endif %}
+
+  {% if providers %}
+  <div class="provider-grid" id="results">
+    {% for p in providers %}
+      {% include "partials/provider_card.html" %}
+      {% if forloop.counter == 4 and banners %}<div style="grid-column:1/-1">{% include "partials/banners.html" %}</div>{% endif %}
+    {% endfor %}
+  </div>
+  {% if banners and providers|length < 4 %}<div style="margin-top:14px">{% include "partials/banners.html" %}</div>{% endif %}
+  {% else %}
+  <div class="empty">
+    <div class="ic">{% icon "search" "icon-lg" %}</div>
+    <h2 class="h3">{% translate "No worker matches these filters yet" %}</h2>
+    <p class="muted" style="margin:6px auto 16px;max-width:420px">{% translate "Remove a filter, or tell us the work and our team will find someone and call you." %}</p>
+    <div class="row gap-8 wrap" style="justify-content:center">
+      <a class="btn btn-ghost" href="{{ request.path }}">{% translate "Clear filters" %}</a>
+      <a class="btn" href="{% url 'work_request' %}">{% translate "Kaam batao" %}</a>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="cta-band reveal" style="margin:28px 0 8px;background:linear-gradient(120deg,#ECF7F5,#D4EEEA)">
+    <div class="stack gap-4">
+      <h2 class="h3">{% translate "Can't decide?" %}</h2>
+      <p class="muted">{% translate "Tell us the work. Our team will pick the right worker and arrange the call." %}</p>
+    </div>
+    <a class="btn" href="{% url 'work_request' %}">{% translate "Kaam batao" %}{% icon "arrow" %}</a>
+  </div>
+
+  <div class="stack gap-12" style="margin:28px 0">
+    <h2 class="h3">{% translate "Other services" %}</h2>
+    <div class="chips" style="margin:0">{% for c in other_categories %}<a class="chip" href="{% url 'category_list' current_city.slug c.slug %}">{% icon c|cat_icon %}{{ c.name }}</a>{% endfor %}</div>
+  </div>
+</div>
+</div>
+{% endblock %}

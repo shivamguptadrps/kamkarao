@@ -1,0 +1,7 @@
+{% load i18n kk %}
+<div class="sheet-head">
+  <h2>{% translate "Daily limit reached" %}</h2>
+  <button class="icon-btn" type="button" data-sheet-close aria-label="{% translate "Close" %}">{% icon "x" %}</button>
+</div>
+<p class="muted">{% translate "To protect our workers from spam, one account can open a limited number of new contacts per day. Please try again tomorrow, or tell us the work and we will arrange it." %}</p>
+<a class="btn btn-block" style="margin-top:16px" href="{% url 'work_request' %}">{% translate "Kaam batao" %}</a>

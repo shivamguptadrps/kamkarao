@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% load i18n kk %}
+{% block content %}
+<div class="container" style="padding:48px 16px">
+  <div class="empty"><div class="ic">{% icon "phone" "icon-lg" %}</div><h1 class="h3">{% translate "No internet connection." %}</h1><p class="muted">{% translate "Please check your connection and try again." %}</p></div>
+</div>
+{% endblock %}

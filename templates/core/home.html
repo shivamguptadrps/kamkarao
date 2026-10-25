@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load i18n kk %}
+{% block content %}
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="hero-badge enter">{% if current_city %}<span class="dot">{% icon "pin" "icon-sm" %}</span>{% translate "Now live in Banda city" %}{% endif %}</span>
+      <h1 class="h1 enter" style="--i:1">{% translate "Trusted local workers," %}<br><span class="hl">{% translate "right in your mohalla" %}</span></h1>
+      <p class="lead enter" style="--i:2">{% translate "Electrician, plumber, AC mechanic, beautician and more. Every worker is met in person and checked. Call them directly, no commission." %}</p>
+      <form class="search enter" style="--i:3" action="{% url 'search' %}" method="get" role="search">
+        {% icon "search" %}
+        <label for="q" class="sr-only">{% translate "What work do you need?" %}</label>
+        <input id="q" name="q" type="search" autocomplete="off" enterkeyhint="search"
+               placeholder="{% translate "e.g. fan not working" %}"
+               data-hints='["{% translate "e.g. fan not working" %}", "{% translate "e.g. tap is leaking" %}", "{% translate "e.g. AC service" %}", "{% translate "e.g. bike puncture" %}", "{% translate "e.g. bridal mehndi" %}"]'>
+        <button class="btn" type="submit">{% translate "Search" %}</button>
+      </form>
+      <div class="chips enter" style="--i:4">
+        {% for c in categories|slice:":4" %}
+          {% if current_city %}<a class="chip" href="{% url 'category_list' current_city.slug c.slug %}">{% icon c|cat_icon %}{{ c.name }}</a>{% endif %}
+        {% endfor %}
+      </div>
+      <div class="hero-stats enter" style="--i:5">
+        <div><div class="n" data-count="{{ stats.providers }}">{{ stats.providers }}</div><div class="l">{% translate "checked workers" %}</div></div>
+        <div><div class="n" data-count="{{ stats.areas }}">{{ stats.areas }}</div><div class="l">{% translate "mohallas covered" %}</div></div>
+        <div><div class="n">₹0</div><div class="l">{% translate "commission on your job" %}</div></div>
+      </div>
+    </div>
+
+    <div class="hero-art" aria-hidden="true">
+      <div class="orb"></div>
+      <div class="ring r2"></div>
+      <div class="ring"></div>
+      <div class="pulse"></div>
+      <div class="pin"><div class="pin-body">{% icon "wrench" %}</div></div>
+      <div class="bubble b1">{% icon "bolt" %}</div>
+      <div class="bubble b2">{% icon "droplet" %}</div>
+      <div class="bubble b3">{% icon "sparkle" %}</div>
+      <div class="bubble b4">{% icon "bike" %}</div>
+      <div class="bubble b5">{% icon "roller" %}</div>
+      <div class="float-card c1"><span class="av">RK</span><span class="stack"><b class="strong">Ramesh K.</b><span class="tiny muted">★ 4.8 · 1.2 {% translate "km" %}</span></span></div>
+      <div class="float-card c2"><span class="ok">{% icon "shield" %}</span><span class="stack"><b class="strong">{% translate "ID checked" %}</b><span class="tiny muted">{% translate "met in person" %}</span></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services" style="padding-top:24px">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="stack gap-4">
+        <span class="eyebrow">{% translate "Services" %}</span>
+        <h2 class="h2">{% translate "What do you need done?" %}</h2>
+      </div>
+      {% if current_area %}<span class="muted small row gap-4">{% icon "pin" "icon-sm" %}{% blocktranslate with a=current_area.name %}Showing workers near {{ a }}{% endblocktranslate %}</span>{% endif %}
+    </div>
+    <div class="services">
+      {% for c in categories %}
+        {% if current_city %}
+        <a class="service reveal" style="--i:{{ forloop.counter0 }};--c:{{ c|cat_color }}" href="{% url 'category_list' current_city.slug c.slug %}">
+          {% if c.image %}<img src="{{ c.image.url }}" alt="" loading="lazy">{% endif %}
+          <span class="ic">{% icon c|cat_icon %}</span>
+          <span class="name">{{ c.name }}</span>
+          <span class="meta">{% blocktranslate count n=c.live_count %}{{ n }} worker{% plural %}{{ n }} workers{% endblocktranslate %}{% if c.tagline %} · {{ c.tagline }}{% endif %}</span>
+        </a>
+        {% endif %}
+      {% endfor %}
+      <a class="service more reveal" style="--i:{{ categories|length }}" href="{% url 'work_request' %}">
+        <span class="ic">{% icon "message" %}</span>
+        <span class="name">{% translate "Something else?" %}</span>
+        <span class="meta muted">{% translate "Tell us the work, we will find someone" %}</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% if banners %}
+<section class="container" style="margin-bottom:8px">{% include "partials/banners.html" %}</section>
+{% endif %}
+
+{% if top_providers %}
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="stack gap-4">
+        <span class="eyebrow">{% translate "Top rated" %}</span>
+        <h2 class="h2">{% translate "Free today and highly rated" %}</h2>
+      </div>
+    </div>
+    <div class="mini-scroller">
+      {% for p in top_providers %}
+      <a class="mini reveal" style="--i:{{ forloop.counter0 }}" href="{{ p.get_absolute_url }}">
+        {% include "partials/avatar.html" with p=p show_online=True %}
+        <span class="stack" style="min-width:0">
+          <span class="pname">{{ p.name }}</span>
+          <span class="tiny muted">{{ p.category.name }} · {{ p.area.name }}</span>
+          {% include "partials/rating.html" %}
+        </span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="section" style="padding-top:16px">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="stack gap-4">
+        <span class="eyebrow">{% translate "How it works" %}</span>
+        <h2 class="h2">{% translate "Work done in three simple steps" %}</h2>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step reveal" style="--i:0"><div class="num">{% icon "pin" %}</div><h3>{% translate "Pick service and mohalla" %}</h3><p class="muted">{% translate "Browse every worker freely. No login, no app to install." %}</p></div>
+      <div class="step reveal" style="--i:1"><div class="num">{% icon "star" %}</div><h3>{% translate "Compare and choose" %}</h3><p class="muted">{% translate "See distance, experience, starting price and ratings from real customers." %}</p></div>
+      <div class="step reveal" style="--i:2"><div class="num">{% icon "phone" %}</div><h3>{% translate "Call or WhatsApp directly" %}</h3><p class="muted">{% translate "Verify your number once with OTP. Pay the worker directly when the work is done." %}</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="trust reveal">
+      <div class="stack gap-12">
+        <span class="eyebrow" style="color:#5EEAD4">{% translate "Why people trust us" %}</span>
+        <h2 class="h2">{% translate "Every worker is met in person before going live" %}</h2>
+        <p>{% translate "Our team visits each worker's shop or home in Banda. Only after the checks below does a profile appear on KamKarao." %}</p>
+      </div>
+      <div class="trust-list">
+        <div class="trust-item"><span class="ic">{% icon "shield" %}</span><span><b>{% translate "Government ID seen" %}</b>{% translate "We see the ID in person and keep only the last 4 digits." %}</span></div>
+        <div class="trust-item"><span class="ic">{% icon "phone" %}</span><span><b>{% translate "Phone checked by OTP" %}</b>{% translate "The number you call really belongs to the worker." %}</span></div>
+        <div class="trust-item"><span class="ic">{% icon "star" %}</span><span><b>{% translate "Ratings only from real customers" %}</b>{% translate "Only people who contacted the worker through us can rate." %}</span></div>
+        <div class="trust-item"><span class="ic">{% icon "flag" %}</span><span><b>{% translate "Complaints acted on" %}</b>{% translate "Workers who miss calls are paused. Serious complaints mean removal." %}</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container" style="margin-bottom:40px">
+  <div class="cta-band reveal">
+    <div class="stack gap-8">
+      <h2 class="h2">{% translate "Are you a skilled worker in Banda?" %}</h2>
+      <p class="strong" style="font-weight:500">{% translate "Join KamKarao and get calls from your own area. Free for the first 6 months." %}</p>
+    </div>
+    <a class="btn btn-dark btn-lg" href="{% url 'join' %}">{% translate "Join as a worker" %}{% icon "arrow" %}</a>
+  </div>
+</section>
+{% endblock %}

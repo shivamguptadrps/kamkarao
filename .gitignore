@@ -1,0 +1,14 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+db.sqlite3
+media/
+private_media/
+staticfiles/
+*.zip
+server_log.txt
+setup_log.txt
+ADMIN_LOGIN.txt
+.DS_Store

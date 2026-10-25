@@ -1,0 +1,124 @@
+{% load static i18n kk %}<!doctype html>
+{% get_current_language as LANG %}
+<html lang="{{ LANG }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{% block title %}{% translate "KamKarao – trusted local workers in Banda" %}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{% translate "Find a checked electrician, plumber, AC mechanic, bike mechanic, carpenter, painter or beautician near your mohalla in Banda. Call directly, no commission." %}{% endblock %}">
+  <meta name="theme-color" content="#0F766E">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="{% static 'img/icon.svg' %}" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="{% static 'img/icon-192.png' %}">
+  {% for code, name in LANGUAGES %}<link rel="alternate" hreflang="{{ code }}" href="{{ SITE_URL }}/{{ code }}{{ request.path|slice:'3:' }}">
+  {% endfor %}
+  <meta property="og:title" content="KamKarao">
+  <meta property="og:description" content="{% translate "Trusted local workers in Banda, in your own mohalla." %}">
+  <meta property="og:image" content="{{ SITE_URL }}{% static 'img/og.jpg' %}">
+  <link rel="preload" href="{% static 'fonts/hind-devanagari-400-normal.woff2' %}" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+  <script src="{% static 'vendor/htmx.min.js' %}" defer></script>
+  <script src="{% static 'js/app.js' %}" defer></script>
+  {% block head %}{% endblock %}
+</head>
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+      data-lang-prefix="/{{ LANG }}"
+      data-login-url="{% url 'login_sheet' %}"
+      data-error-text="{% translate "Something went wrong. Please try again." %}"
+      data-offline-text="{% translate "No internet connection." %}"
+      class="{% block body_class %}{% endblock %}">
+{% include "partials/icons.html" %}
+<a href="#main" class="sr-only">{% translate "Skip to content" %}</a>
+
+<header class="header">
+  <div class="container">
+    <a href="{% url 'home' %}" class="logo" aria-label="KamKarao {% translate "home" %}">
+      <span class="logo-mark">{% icon "wrench" %}</span>
+      <span>Kam<b>Karao</b></span>
+    </a>
+    <nav class="header-nav" aria-label="{% translate "Main" %}">
+      <a href="{% url 'home' %}#services">{% translate "Services" %}</a>
+      <a href="{% url 'work_request' %}">{% translate "Kaam batao" %}</a>
+      <a href="{% url 'join' %}">{% translate "Join as worker" %}</a>
+    </nav>
+    <span class="header-spacer"></span>
+    <button class="area-pill" type="button" hx-get="{% url 'area_sheet' %}?next={{ request.get_full_path|urlencode }}" hx-target="#sheet-body" aria-label="{% translate "Choose your mohalla" %}">
+      {% icon "pin" "icon-sm" %}
+      <span class="label">{% if current_area %}{{ current_area.name }}{% else %}{% translate "Choose mohalla" %}{% endif %}</span>
+      {% icon "down" "icon-sm" %}
+    </button>
+    <div class="lang-switch" role="group" aria-label="{% translate "Language" %}">
+      <button type="button" data-lang="hi" aria-pressed="{% if LANG == 'hi' %}true{% else %}false{% endif %}" lang="hi">हिं</button>
+      <button type="button" data-lang="en" aria-pressed="{% if LANG == 'en' %}true{% else %}false{% endif %}" lang="en">EN</button>
+    </div>
+    <div class="header-account">
+      {% if customer %}
+        <a class="btn btn-ghost btn-sm" href="{% url 'account' %}">{% icon "user" "icon-sm" %} {% translate "My contacts" %}</a>
+      {% else %}
+        <button class="btn btn-dark btn-sm" type="button" hx-get="{% url 'login_sheet' %}" hx-target="#sheet-body">{% translate "Login" %}</button>
+      {% endif %}
+    </div>
+  </div>
+  <form id="lang-form" action="{% url 'set_language' %}" method="post" hidden>
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+    <input type="hidden" name="language" value="">
+  </form>
+</header>
+
+<main id="main">
+  {% if messages %}{% for m in messages %}<span hidden data-toast="{{ m }}"></span>{% endfor %}{% endif %}
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="stack gap-12">
+        <a href="{% url 'home' %}" class="logo"><span class="logo-mark">{% icon "wrench" %}</span><span>Kam<b>Karao</b></span></a>
+        <p>{% translate "Checked local workers in Banda. You call them directly and pay them directly. We never take a commission from your job." %}</p>
+      </div>
+      <div>
+        <h4>{% translate "Services" %}</h4>
+        <ul>
+          {% if current_city %}{% for c in footer_categories %}<li><a href="{% url 'category_list' current_city.slug c.slug %}">{{ c.name }}</a></li>{% endfor %}{% endif %}
+        </ul>
+      </div>
+      <div>
+        <h4>KamKarao</h4>
+        <ul>
+          <li><a href="{% url 'work_request' %}">{% translate "Kaam batao: tell us the work" %}</a></li>
+          <li><a href="{% url 'join' %}">{% translate "Join as a worker" %}</a></li>
+          {% if SUPPORT_WHATSAPP %}<li><a href="https://wa.me/{{ SUPPORT_WHATSAPP }}" target="_blank" rel="noopener">{% translate "WhatsApp support" %}</a></li>{% endif %}
+          <li><a href="{% url 'credits' %}">{% translate "Photo credits" %}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© {% now "Y" %} KamKarao · {% translate "Banda, Uttar Pradesh" %}</span>
+      <span>{% translate "KamKarao connects you with workers. The work and payment are between you and the worker." %}</span>
+    </div>
+  </div>
+</footer>
+
+<nav class="bottom-nav" aria-label="{% translate "Quick navigation" %}">
+  <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">{% icon "home" %}<span>{% translate "Home" %}</span></a>
+  <a href="{% url 'home' %}#services" class="{% if request.resolver_match.url_name == 'category_list' %}active{% endif %}">{% icon "grid" %}<span>{% translate "Services" %}</span></a>
+  <a href="{% url 'work_request' %}" class="fab"><span class="fab-dot">{% icon "plus" %}</span><span class="lbl">{% translate "Kaam batao" %}</span></a>
+  {% if customer %}
+  <a href="{% url 'account' %}" class="{% if request.resolver_match.url_name == 'account' %}active{% endif %}">{% icon "user" %}<span>{% translate "Account" %}</span></a>
+  {% else %}
+  <button type="button" hx-get="{% url 'login_sheet' %}" hx-target="#sheet-body">{% icon "user" %}<span>{% translate "Login" %}</span></button>
+  {% endif %}
+</nav>
+
+<div id="sheet" class="sheet" aria-hidden="true">
+  <div class="sheet-backdrop" data-sheet-close></div>
+  <div class="sheet-panel" role="dialog" aria-modal="true" aria-label="KamKarao">
+    <div class="sheet-grab"></div>
+    <div id="sheet-body"></div>
+  </div>
+</div>
+{% block scripts %}{% endblock %}
+</body>
+</html>

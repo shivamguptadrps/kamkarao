@@ -1,0 +1,1153 @@
+#
+msgid ""
+msgstr ""
+"Language: hi\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "%(c)s in %(city)s – KamKarao"
+msgstr "%(city)s में %(c)s – KamKarao"
+
+msgid "%(n)s rating"
+msgid_plural "%(n)s ratings"
+msgstr[0] "%(n)s रेटिंग"
+msgstr[1] "%(n)s रेटिंग"
+
+msgid "%(n)s worker"
+msgid_plural "%(n)s workers"
+msgstr[0] "%(n)s कारीगर"
+msgstr[1] "%(n)s कारीगर"
+
+msgid ""
+"%(n)s, %(c)s in %(a)s, Banda. %(y)s years of experience. ID checked by "
+"KamKarao. See rates and call directly."
+msgstr ""
+"%(n)s, %(a)s, बांदा में %(c)s। %(y)s साल का अनुभव। KamKarao द्वारा ID जांची "
+"गई। रेट देखें और सीधे कॉल करें।"
+
+msgid "%(t)s seen in person"
+msgstr "%(t)s खुद देखा गया"
+
+msgid "%(y)s yr exp"
+msgid_plural "%(y)s yrs exp"
+msgstr[0] "%(y)s साल अनुभव"
+msgstr[1] "%(y)s साल अनुभव"
+
+msgid "<b class=\"strong\">%(n)s</b> worker found"
+msgid_plural "<b class=\"strong\">%(n)s</b> workers found"
+msgstr[0] "<b class=\"strong\">%(n)s</b> कारीगर मिला"
+msgstr[1] "<b class=\"strong\">%(n)s</b> कारीगर मिले"
+
+msgid "Aadhaar (masked)"
+msgstr "आधार (छिपे नंबर वाला)"
+
+msgid "Account"
+msgstr "खाता"
+
+msgid "Ad"
+msgstr "विज्ञापन"
+
+msgid "All"
+msgstr "सभी"
+
+msgid "All %(c)s"
+msgstr "सभी %(c)s"
+
+msgid "All of the city"
+msgstr "पूरा शहर"
+
+msgid "Any time today"
+msgstr "आज कभी भी"
+
+msgid "Anything to tell others? (optional)"
+msgstr "दूसरों को कुछ बताना चाहेंगे? (ज़रूरी नहीं)"
+
+msgid "Are you a skilled worker in Banda?"
+msgstr "क्या आप बांदा में कारीगर या मिस्त्री हैं?"
+
+msgid "Asked for more money"
+msgstr "ज़्यादा पैसे मांगे"
+
+msgid "Available today"
+msgstr "आज उपलब्ध"
+
+msgid "Back to home"
+msgstr "होम पर जाएं"
+
+msgid "Bad behaviour"
+msgstr "बुरा व्यवहार"
+
+msgid "Banda, Uttar Pradesh"
+msgstr "बांदा, उत्तर प्रदेश"
+
+msgid "Blocked"
+msgstr "ब्लॉक"
+
+msgid "Bottom of a provider profile"
+msgstr ""
+
+msgid "Breadcrumb"
+msgstr "रास्ता"
+
+msgid "Browse every worker freely. No login, no app to install."
+msgstr "हर कारीगर की प्रोफ़ाइल बिना लॉगिन देखें। कोई ऐप डाउनलोड नहीं करना।"
+
+msgid "Busy today"
+msgstr "आज व्यस्त"
+
+msgid "Call"
+msgstr "कॉल करें"
+
+msgid "Call now"
+msgstr "अभी कॉल करें"
+
+msgid "Call or WhatsApp directly"
+msgstr "सीधे कॉल या WhatsApp करें"
+
+msgid "Call this number"
+msgstr "इस नंबर पर कॉल करें"
+
+msgid "Can't decide?"
+msgstr "तय नहीं कर पा रहे?"
+
+msgid "Change number"
+msgstr "नंबर बदलें"
+
+msgid "Checked"
+msgstr "जांचा हुआ"
+
+msgid ""
+"Checked %(c)s near your mohalla in %(city)s. See ratings, starting prices "
+"and call directly."
+msgstr ""
+"%(city)s में आपके मोहल्ले के पास जांचे हुए %(c)s। रेटिंग और शुरुआती रेट "
+"देखें, सीधे कॉल करें।"
+
+msgid ""
+"Checked local workers in Banda. You call them directly and pay them "
+"directly. We never take a commission from your job."
+msgstr ""
+"बांदा के जांचे हुए कारीगर। आप सीधे कॉल करें और सीधे पैसे दें। आपके काम पर हम"
+" कोई कमीशन नहीं लेते।"
+
+msgid "Choose mohalla"
+msgstr "मोहल्ला चुनें"
+
+msgid "Choose your mohalla"
+msgstr "अपना मोहल्ला चुनें"
+
+msgid "Choose your mohalla to see the nearest workers first."
+msgstr "मोहल्ला चुनें, ताकि सबसे पास के कारीगर पहले दिखें।"
+
+msgid "Clear filters"
+msgstr "फ़िल्टर हटाएं"
+
+msgid "Close"
+msgstr "बंद करें"
+
+msgid "Closed"
+msgstr "बंद"
+
+msgid "Comes anywhere in Banda"
+msgstr "बांदा में कहीं भी आते हैं"
+
+msgid "Compare and choose"
+msgstr "तुलना करें और चुनें"
+
+msgid "Complaints acted on"
+msgstr "शिकायत पर कार्रवाई"
+
+msgid "Copy number"
+msgstr "नंबर कॉपी करें"
+
+msgid "Could not send the OTP. Please try again in a minute."
+msgstr "OTP नहीं भेज पाए। एक मिनट बाद फिर कोशिश करें।"
+
+msgid "Customer cancelled"
+msgstr "ग्राहक ने रद्द किया"
+
+msgid "Customers call you directly. No commission on your work."
+msgstr "ग्राहक आपको सीधे कॉल करते हैं। आपके काम पर कोई कमीशन नहीं।"
+
+msgid "Daily limit reached"
+msgstr "आज की सीमा पूरी हो गई"
+
+msgid "Details (optional)"
+msgstr "पूरी बात (ज़रूरी नहीं)"
+
+msgid "Did the work get done?"
+msgstr "क्या काम हो गया?"
+
+msgid "Draft"
+msgstr ""
+
+msgid "Driving licence"
+msgstr "ड्राइविंग लाइसेंस"
+
+msgid ""
+"Electrician, plumber, AC mechanic, beautician and more. Every worker is met "
+"in person and checked. Call them directly, no commission."
+msgstr ""
+"इलेक्ट्रीशियन, प्लम्बर, AC मैकेनिक, ब्यूटीशियन और भी बहुत कुछ। हर कारीगर से "
+"हम खुद मिलकर जांच करते हैं। सीधे कॉल करें, कोई कमीशन नहीं।"
+
+msgid "Enter a valid 10-digit mobile number."
+msgstr "सही 10 अंकों का मोबाइल नंबर डालें।"
+
+msgid "Enter the OTP"
+msgstr "OTP डालें"
+
+msgid "Every worker is met in person before going live"
+msgstr "प्रोफ़ाइल लाइव होने से पहले हर कारीगर से खुद मिलते हैं"
+
+msgid "Featured"
+msgstr "ख़ास"
+
+msgid "Female"
+msgstr ""
+
+msgid "Filters"
+msgstr "फ़िल्टर"
+
+msgid ""
+"Find a checked electrician, plumber, AC mechanic, bike mechanic, carpenter, "
+"painter or beautician near your mohalla in Banda. Call directly, no "
+"commission."
+msgstr ""
+"बांदा में अपने मोहल्ले के पास जांचे हुए इलेक्ट्रीशियन, प्लम्बर, AC मैकेनिक, "
+"बाइक मैकेनिक, बढ़ई, पेंटर या ब्यूटीशियन खोजें। सीधे कॉल करें, कोई कमीशन "
+"नहीं।"
+
+msgid "Find a worker"
+msgstr "कारीगर खोजें"
+
+msgid "Finding your location…"
+msgstr "आपकी लोकेशन खोज रहे हैं…"
+
+msgid "For workers"
+msgstr "कारीगरों के लिए"
+
+msgid "Free for the first 6 months."
+msgstr "पहले 6 महीने बिल्कुल मुफ़्त।"
+
+msgid "Free today and highly rated"
+msgstr "आज खाली और सबसे अच्छी रेटिंग वाले"
+
+msgid "Get work from your own area"
+msgstr "अपने ही इलाके से काम पाएं"
+
+msgid "Go to KamKarao"
+msgstr "KamKarao पर जाएं"
+
+msgid "Government ID seen"
+msgstr "सरकारी ID देखी गई"
+
+msgid "He did not come"
+msgstr "वो आए नहीं"
+
+msgid "He did not pick up"
+msgstr "उन्होंने फ़ोन नहीं उठाया"
+
+msgid "Higher shows first"
+msgstr ""
+
+msgid "Home"
+msgstr "होम"
+
+msgid "Home page strip"
+msgstr ""
+
+msgid "How it works"
+msgstr "कैसे काम करता है"
+
+msgid "How was the work?"
+msgstr "काम कैसा रहा?"
+
+msgid "I cancelled it myself"
+msgstr "मैंने खुद रद्द किया"
+
+msgid "ID and phone checked in person"
+msgstr "ID और फ़ोन खुद मिलकर जांचे गए"
+
+msgid "ID check pending"
+msgstr "ID जांच बाकी"
+
+msgid "ID checked"
+msgstr "ID जांची गई"
+
+msgid "ID photo (private)"
+msgstr ""
+
+msgid "ID seen"
+msgstr ""
+
+msgid "If something else, write it here"
+msgstr "कुछ और काम हो तो यहां लिखें"
+
+msgid ""
+"Illustration key: electrician, plumber, appliance, bike, carpenter, beauty, "
+"painter"
+msgstr ""
+
+msgid "In your mohalla"
+msgstr "आपके मोहल्ले में"
+
+msgid ""
+"Indicative prices. Materials are extra. The worker confirms the final price "
+"after seeing the work."
+msgstr ""
+"ये अनुमानित रेट हैं। सामान का खर्च अलग। काम देखकर कारीगर पक्का रेट बताएंगे।"
+
+msgid "Indigo"
+msgstr ""
+
+msgid "Inside a service listing"
+msgstr ""
+
+msgid ""
+"Join KamKarao and get calls from your own area. Free for the first 6 months."
+msgstr ""
+"KamKarao से जुड़ें और अपने इलाके से सीधे कॉल पाएं। पहले 6 महीने मुफ़्त।"
+
+msgid "Join KamKarao as a worker"
+msgstr "कारीगर के रूप में KamKarao से जुड़ें"
+
+msgid "Join as a worker"
+msgstr "कारीगर के रूप में जुड़ें"
+
+msgid "Join as worker"
+msgstr "कारीगर जुड़ें"
+
+msgid "Kaam batao"
+msgstr "काम बताओ"
+
+msgid "Kaam batao – tell us the work"
+msgstr "काम बताओ – हमें अपना काम बताएं"
+
+msgid "Kaam batao: tell us the work"
+msgstr "काम बताओ: हमें अपना काम बताएं"
+
+msgid ""
+"KamKarao connects you with workers. The work and payment are between you and"
+" the worker."
+msgstr ""
+"KamKarao सिर्फ़ आपको कारीगर से मिलाता है। काम और भुगतान आपके और कारीगर के "
+"बीच है।"
+
+msgid "KamKarao – trusted local workers in Banda"
+msgstr "KamKarao – बांदा के भरोसेमंद कारीगर"
+
+msgid "Language"
+msgstr "भाषा"
+
+msgid "Latitude of the mohalla's centre"
+msgstr ""
+
+msgid "Leave empty if same as mobile"
+msgstr ""
+
+msgid "Left work unfinished"
+msgstr "काम अधूरा छोड़ा"
+
+msgid "Live"
+msgstr ""
+
+msgid ""
+"Location is used only once to find the nearest mohalla. It is not saved."
+msgstr ""
+"लोकेशन सिर्फ़ एक बार सबसे पास का मोहल्ला खोजने के लिए ली जाती है। इसे सेव "
+"नहीं किया जाता।"
+
+msgid "Location permission was not given. Please pick from the list."
+msgstr "लोकेशन की अनुमति नहीं मिली। कृपया लिस्ट से चुनें।"
+
+msgid "Login"
+msgstr "लॉगिन"
+
+msgid "Login with your mobile"
+msgstr "मोबाइल नंबर से लॉगिन करें"
+
+msgid "Logout"
+msgstr "लॉग आउट"
+
+msgid "Longitude of the mohalla's centre"
+msgstr ""
+
+msgid "Main"
+msgstr "मुख्य"
+
+msgid "Male"
+msgstr ""
+
+msgid "Mobile"
+msgstr "मोबाइल"
+
+msgid "Mobile number"
+msgstr "मोबाइल नंबर"
+
+msgid "Mobile number verified by OTP"
+msgstr "मोबाइल नंबर OTP से पक्का किया गया"
+
+msgid "Mohalla"
+msgstr "मोहल्ला"
+
+msgid "More %(c)s nearby"
+msgstr "पास के और %(c)s"
+
+msgid "Most experienced"
+msgstr "सबसे अनुभवी"
+
+msgid "My contacts"
+msgstr "मेरे संपर्क"
+
+msgid ""
+"Namaste %(name)s ji, I got your number from KamKarao. I need %(work)s work."
+msgstr ""
+"नमस्ते %(name)s जी, मुझे KamKarao से आपका नंबर मिला। मुझे %(work)s का काम "
+"करवाना है।"
+
+msgid "Nearby mohallas only"
+msgstr "सिर्फ़ पास के मोहल्ले"
+
+msgid "Nearby only"
+msgstr "सिर्फ़ पास में"
+
+msgid "Nearest"
+msgstr "सबसे पास"
+
+msgid "Nearest mohalla:"
+msgstr "सबसे पास का मोहल्ला:"
+
+msgid "New"
+msgstr "नया"
+
+msgid "No internet connection."
+msgstr "इंटरनेट कनेक्शन नहीं है।"
+
+msgid "No mohalla found with that name."
+msgstr "इस नाम का कोई मोहल्ला नहीं मिला।"
+
+msgid "No worker matches these filters yet"
+msgstr "इन फ़िल्टर में अभी कोई कारीगर नहीं है"
+
+msgid ""
+"No written reviews yet. Ratings come only from customers who contacted this "
+"worker through KamKarao."
+msgstr ""
+"अभी कोई लिखा हुआ रिव्यू नहीं। रेटिंग सिर्फ़ उन्हीं ग्राहकों से आती है "
+"जिन्होंने KamKarao से संपर्क किया।"
+
+msgid "Not followed up yet"
+msgstr ""
+
+msgid ""
+"Not sure whom to call? Describe the work. We pick the right worker and "
+"arrange the call."
+msgstr ""
+"समझ नहीं आ रहा किसे बुलाएं? काम बताइए, हम सही कारीगर चुनकर कॉल करवाएंगे।"
+
+msgid "Now live in Banda city"
+msgstr "अब बांदा शहर में शुरू"
+
+msgid "Now serving Banda city. Atarra, Baberu and Naraini coming soon."
+msgstr "अभी सिर्फ़ बांदा शहर में। अतर्रा, बबेरू और नरैनी जल्द।"
+
+msgid "Number copied"
+msgstr "नंबर कॉपी हो गया"
+
+msgid "On KamKarao since"
+msgstr "KamKarao पर कब से"
+
+msgid "One OTP, stays logged in for 30 days."
+msgstr "एक बार OTP, 30 दिन तक लॉगिन रहेंगे।"
+
+msgid "Only people who contacted the worker through us can rate."
+msgstr "सिर्फ़ वही रेटिंग दे सकते हैं जिन्होंने हमारे ज़रिए संपर्क किया।"
+
+msgid "Only the last 4 characters of the ID."
+msgstr ""
+
+msgid "Open WhatsApp"
+msgstr "WhatsApp खोलें"
+
+msgid "Or WhatsApp instead"
+msgstr "या WhatsApp करें"
+
+msgid "Or call instead"
+msgstr "या कॉल करें"
+
+msgid "Other"
+msgstr "अन्य"
+
+msgid "Other government ID"
+msgstr "दूसरी सरकारी ID"
+
+msgid "Other services"
+msgstr "दूसरी सेवाएं"
+
+msgid "Our team comes to you and makes your profile."
+msgstr "हमारी टीम आपके पास आकर प्रोफ़ाइल बनाएगी।"
+
+msgid "Our team met the worker at the shop or home"
+msgstr "हमारी टीम कारीगर से दुकान या घर पर मिली"
+
+msgid ""
+"Our team visits each worker's shop or home in Banda. Only after the checks "
+"below does a profile appear on KamKarao."
+msgstr ""
+"हमारी टीम बांदा में हर कारीगर की दुकान या घर जाती है। नीचे की जांच के बाद ही"
+" प्रोफ़ाइल KamKarao पर आती है।"
+
+msgid ""
+"Our team will call you within 2 days to fix a time to meet. Keep a "
+"government ID and a photo ready."
+msgstr ""
+"हमारी टीम 2 दिन में कॉल करके मिलने का समय तय करेगी। कोई सरकारी ID और एक "
+"फ़ोटो तैयार रखें।"
+
+msgid ""
+"Our team will talk to the right worker and arrange a call to your number "
+"soon."
+msgstr "हमारी टीम सही कारीगर से बात करके जल्द आपके नंबर पर कॉल करवाएगी।"
+
+msgid "PAN card"
+msgstr "पैन कार्ड"
+
+msgid "Page not found"
+msgstr "पेज नहीं मिला"
+
+msgid "Paused"
+msgstr ""
+
+msgid "Pay the worker directly. KamKarao takes no commission."
+msgstr "पैसे सीधे कारीगर को दें। KamKarao कोई कमीशन नहीं लेता।"
+
+msgid "Phone checked by OTP"
+msgstr "फ़ोन OTP से जांचा गया"
+
+msgid "Photo credits"
+msgstr "फ़ोटो क्रेडिट"
+
+msgid ""
+"Photos may be resized. Each photo links to its source page with full licence"
+" details."
+msgstr ""
+"फ़ोटो का आकार बदला गया हो सकता है। हर फ़ोटो के साथ उसके स्रोत और लाइसेंस का "
+"लिंक है।"
+
+msgid "Pick service and mohalla"
+msgstr "सेवा और मोहल्ला चुनें"
+
+msgid "Please check your connection and try again."
+msgstr "कनेक्शन जांचें और फिर कोशिश करें।"
+
+msgid "Please choose 1 to 5 stars."
+msgstr "1 से 5 स्टार चुनें।"
+
+msgid "Please choose what happened."
+msgstr "बताइए क्या हुआ।"
+
+msgid "Please describe the work in a few words."
+msgstr "कुछ शब्दों में काम बताइए।"
+
+msgid "Please tell us what happened."
+msgstr "बताइए क्या हुआ।"
+
+msgid "Please write your name."
+msgstr "अपना नाम लिखें।"
+
+msgid "Price too high"
+msgstr "रेट बहुत ज़्यादा"
+
+msgid "Price was too high"
+msgstr "रेट बहुत ज़्यादा था"
+
+msgid "Provider arranged"
+msgstr ""
+
+msgid "Provider did not answer"
+msgstr ""
+
+msgid "Provider did not come"
+msgstr ""
+
+msgid "Quick navigation"
+msgstr "जल्दी जाएं"
+
+msgid "Rate"
+msgstr "रेटिंग दें"
+
+msgid "Ratings only from real customers"
+msgstr "रेटिंग सिर्फ़ असली ग्राहकों से"
+
+msgid "Record consent and verify the phone before making a profile live."
+msgstr ""
+
+msgid ""
+"Remove a filter, or tell us the work and our team will find someone and call"
+" you."
+msgstr ""
+"कोई फ़िल्टर हटाएं, या काम बताएं, हमारी टीम कारीगर ढूंढकर आपको कॉल करवाएगी।"
+
+msgid "Report a problem"
+msgstr "शिकायत करें"
+
+msgid "Report a problem with this worker"
+msgstr "इस कारीगर की शिकायत करें"
+
+msgid "Request received"
+msgstr "रिक्वेस्ट मिल गई"
+
+msgid "Right now, urgent"
+msgstr "अभी, जल्दी है"
+
+msgid "Rose"
+msgstr ""
+
+msgid "Saffron"
+msgstr ""
+
+msgid "Search"
+msgstr "खोजें"
+
+msgid "Search mohalla"
+msgstr "मोहल्ला खोजें"
+
+msgid "Search mohalla, e.g. Katra"
+msgstr "मोहल्ला खोजें, जैसे कटरा"
+
+msgid ""
+"See distance, experience, starting price and ratings from real customers."
+msgstr "दूरी, अनुभव, शुरुआती रेट और असली ग्राहकों की रेटिंग देखें।"
+
+msgid "See the full number"
+msgstr "पूरा नंबर देखें"
+
+msgid "Send OTP"
+msgstr "OTP भेजें"
+
+msgid "Send my name"
+msgstr "नाम भेजें"
+
+msgid "Send report"
+msgstr "शिकायत भेजें"
+
+msgid "Send request"
+msgstr "रिक्वेस्ट भेजें"
+
+msgid ""
+"Service photos are from Wikimedia Commons and are used under their Creative "
+"Commons licences."
+msgstr ""
+"सेवाओं की फ़ोटो Wikimedia Commons से हैं और Creative Commons लाइसेंस के तहत "
+"इस्तेमाल की गई हैं।"
+
+msgid "Services"
+msgstr "सेवाएं"
+
+msgid "Show only on this service's pages (empty = all)"
+msgstr ""
+
+msgid "Show only to these mohallas (empty = all)"
+msgstr ""
+
+msgid "Showing workers near %(a)s"
+msgstr "%(a)s के पास के कारीगर"
+
+msgid "Skills"
+msgstr "किन कामों में माहिर"
+
+msgid "Skip to content"
+msgstr "सीधे मुख्य हिस्से पर जाएं"
+
+msgid "Slate"
+msgstr ""
+
+msgid "Something else"
+msgstr "कुछ और"
+
+msgid "Something else?"
+msgstr "कोई और काम?"
+
+msgid "Something went wrong. Please try again."
+msgstr "कुछ गड़बड़ हुई। फिर कोशिश करें।"
+
+msgid "Sort"
+msgstr "क्रम"
+
+msgid "Starting prices"
+msgstr "शुरुआती रेट"
+
+msgid "Submit"
+msgstr "भेजें"
+
+msgid "Teal"
+msgstr ""
+
+msgid "Tell us the work"
+msgstr "हमें काम बताएं"
+
+msgid "Tell us the work, we will find someone"
+msgstr "काम बताइए, हम कारीगर ढूंढेंगे"
+
+msgid ""
+"Tell us the work. Our team will pick the right worker and arrange the call."
+msgstr "काम बताइए। हमारी टीम सही कारीगर चुनकर कॉल करवाएगी।"
+
+msgid "Test mode: no SMS is sent. Your OTP is"
+msgstr "टेस्ट मोड: SMS नहीं भेजा गया। आपका OTP है"
+
+msgid "Thank you!"
+msgstr "धन्यवाद!"
+
+msgid "Thank you! Your name is noted."
+msgstr "धन्यवाद! आपका नाम लिख लिया गया है।"
+
+msgid "Thank you. Our team will call you and the provider, then decide."
+msgstr "धन्यवाद। हमारी टीम आपसे और कारीगर से बात करके फ़ैसला करेगी।"
+
+msgid "That OTP is not right or has expired."
+msgstr "OTP गलत है या उसका समय निकल गया।"
+
+msgid "The number you call really belongs to the worker."
+msgstr "जिस नंबर पर आप कॉल करते हैं, वो सच में उसी कारीगर का है।"
+
+msgid "Theft or damage"
+msgstr "चोरी या नुकसान"
+
+msgid "This number cannot use KamKarao. Please contact support."
+msgstr "यह नंबर KamKarao इस्तेमाल नहीं कर सकता। सहायता से संपर्क करें।"
+
+msgid ""
+"This only asks for a callback. Your profile goes live after our team meets "
+"you."
+msgstr ""
+"इससे सिर्फ़ कॉल-बैक की रिक्वेस्ट जाती है। टीम के मिलने के बाद ही प्रोफ़ाइल "
+"लाइव होगी।"
+
+msgid "This page does not exist, or the worker is no longer listed."
+msgstr "यह पेज मौजूद नहीं है, या कारीगर अब लिस्ट में नहीं है।"
+
+msgid "This phone cannot share location. Please pick from the list."
+msgstr "यह फ़ोन लोकेशन नहीं दे सकता। कृपया लिस्ट से चुनें।"
+
+msgid "This week"
+msgstr "इस हफ़्ते"
+
+msgid ""
+"To protect our workers from spam, one account can open a limited number of "
+"new contacts per day. Please try again tomorrow, or tell us the work and we "
+"will arrange it."
+msgstr ""
+"कारीगरों को फ़ालतू कॉल से बचाने के लिए एक खाता रोज़ सीमित नए नंबर ही खोल "
+"सकता है। कल फिर कोशिश करें, या काम बताएं, हम इंतज़ाम करेंगे।"
+
+msgid "Tomorrow"
+msgstr "कल"
+
+msgid ""
+"Tomorrow we will ask on WhatsApp whether the work got done, so your rating "
+"helps others."
+msgstr ""
+"कल हम WhatsApp पर पूछेंगे कि काम हुआ या नहीं, ताकि आपकी रेटिंग दूसरों के काम"
+" आए।"
+
+msgid "Top rated"
+msgstr "सबसे अच्छी रेटिंग"
+
+msgid "Trusted local workers in Banda, in your own mohalla."
+msgstr "बांदा के भरोसेमंद कारीगर, आपके अपने मोहल्ले में।"
+
+msgid "Trusted local workers,"
+msgstr "भरोसेमंद कारीगर,"
+
+msgid "Type of work"
+msgstr "काम का प्रकार"
+
+msgid "Use my location"
+msgstr "मेरी लोकेशन से चुनें"
+
+msgid "Verified customer"
+msgstr "असली ग्राहक"
+
+msgid "Verify"
+msgstr "पक्का करें"
+
+msgid ""
+"Verify your number once with OTP. Pay the worker directly when the work is "
+"done."
+msgstr "एक बार OTP से नंबर पक्का करें। काम होने पर पैसे सीधे कारीगर को दें।"
+
+msgid ""
+"Verify your number once with OTP. We ask so that workers get genuine calls "
+"and you can rate them later. We never show your number to anyone."
+msgstr ""
+"एक बार OTP से अपना नंबर पक्का करें। इससे कारीगरों को असली कॉल मिलते हैं और "
+"आप बाद में रेटिंग दे सकते हैं। आपका नंबर हम किसी को नहीं दिखाते।"
+
+msgid "Voter ID"
+msgstr "वोटर ID"
+
+msgid ""
+"We call both you and the worker before deciding. Serious issues lead to "
+"removal."
+msgstr ""
+"फ़ैसले से पहले हम आपसे और कारीगर दोनों से बात करते हैं। गंभीर मामलों में "
+"कारीगर हटा दिया जाता है।"
+
+msgid "We see the ID in person and keep only the last 4 digits."
+msgstr "ID खुद देखते हैं और सिर्फ़ आख़िरी 4 अंक रखते हैं।"
+
+msgid "We sent a 4-digit OTP to +91 %(ph)s."
+msgstr "+91 %(ph)s पर 4 अंकों का OTP भेजा गया है।"
+
+msgid "What KamKarao checked"
+msgstr "KamKarao ने क्या जांचा"
+
+msgid "What customers say"
+msgstr "ग्राहक क्या कहते हैं"
+
+msgid "What do you need done?"
+msgstr "क्या काम करवाना है?"
+
+msgid "What happened?"
+msgstr "क्या हुआ?"
+
+msgid "What work do you do?"
+msgstr "आप क्या काम करते हैं?"
+
+msgid "What work do you need?"
+msgstr "क्या काम करवाना है?"
+
+msgid "What work is needed?"
+msgstr "क्या काम है?"
+
+msgid "WhatsApp"
+msgstr ""
+
+msgid "WhatsApp number"
+msgstr ""
+
+msgid "WhatsApp support"
+msgstr "WhatsApp सहायता"
+
+msgid "WhatsApp this number"
+msgstr "इस नंबर पर WhatsApp करें"
+
+msgid "When do you need it?"
+msgstr "कब चाहिए?"
+
+msgid "Why people trust us"
+msgstr "लोग भरोसा क्यों करते हैं"
+
+msgid "Wide image, about 1200×400. Leave empty to show a text banner."
+msgstr ""
+
+msgid "Woman provider"
+msgstr "महिला कारीगर"
+
+msgid "Work done"
+msgstr "काम हो गया"
+
+msgid "Work done in three simple steps"
+msgstr "तीन आसान कदम में काम"
+
+msgid "Workers who miss calls are paused. Serious complaints mean removal."
+msgstr ""
+"कॉल न उठाने वाले कारीगर रोक दिए जाते हैं। गंभीर शिकायत पर हटा दिए जाते हैं।"
+
+msgid "Yes, the work is done"
+msgstr "हां, काम हो गया"
+
+msgid "You have not contacted anyone yet."
+msgstr "आपने अभी तक किसी से संपर्क नहीं किया।"
+
+msgid "You seem to be outside Banda city. Please pick from the list."
+msgstr "आप बांदा शहर से बाहर लग रहे हैं। कृपया लिस्ट से चुनें।"
+
+msgid "Your answer helps other families in Banda choose the right worker."
+msgstr ""
+"आपका जवाब बांदा के दूसरे परिवारों को सही कारीगर चुनने में मदद करता है।"
+
+msgid "Your mobile number"
+msgstr "आपका मोबाइल नंबर"
+
+msgid "Your mohalla"
+msgstr "आपका मोहल्ला"
+
+msgid "Your name"
+msgstr "आपका नाम"
+
+msgid "Your request number is <b>%(no)s</b>."
+msgstr "आपका रिक्वेस्ट नंबर <b>%(no)s</b> है।"
+
+msgid "active"
+msgstr ""
+
+msgid "available today"
+msgstr ""
+
+msgid "banner"
+msgstr ""
+
+msgid "banner image (optional)"
+msgstr ""
+
+msgid "banners"
+msgstr ""
+
+msgid "blocked"
+msgstr ""
+
+msgid "button text (English)"
+msgstr ""
+
+msgid "button text (Hindi)"
+msgstr ""
+
+msgid "called back"
+msgstr ""
+
+msgid "calls answered"
+msgstr "कॉल उठाते हैं"
+
+msgid "checked workers"
+msgstr "जांचे हुए कारीगर"
+
+msgid "cities"
+msgstr ""
+
+msgid "city"
+msgstr ""
+
+msgid "commission on your job"
+msgstr "आपके काम पर कमीशन"
+
+msgid "complaint"
+msgstr ""
+
+msgid "complaints"
+msgstr ""
+
+msgid "consent recorded"
+msgstr ""
+
+msgid "contact number"
+msgstr ""
+
+msgid "customer"
+msgstr ""
+
+msgid "customers"
+msgstr ""
+
+msgid "e.g. AC service"
+msgstr "जैसे: AC सर्विस"
+
+msgid "e.g. Came on time and charged what he said"
+msgstr "जैसे: समय पर आए और बताए हुए पैसे ही लिए"
+
+msgid "e.g. The bathroom tap is leaking and the geyser does not heat"
+msgstr "जैसे: बाथरूम का नल टपक रहा है और गीज़र गर्म नहीं हो रहा"
+
+msgid "e.g. bike puncture"
+msgstr "जैसे: बाइक पंचर"
+
+msgid "e.g. bridal mehndi"
+msgstr "जैसे: दुल्हन की मेहंदी"
+
+msgid "e.g. fan not working"
+msgstr "जैसे: पंखा नहीं चल रहा"
+
+msgid "e.g. tap is leaking"
+msgstr "जैसे: नल टपक रहा है"
+
+msgid "featured (paid top slot)"
+msgstr ""
+
+msgid "field person"
+msgstr ""
+
+msgid "from"
+msgstr "शुरू"
+
+msgid "headline (English)"
+msgstr ""
+
+msgid "headline (Hindi)"
+msgstr ""
+
+msgid "home"
+msgstr "होम"
+
+msgid "home mohalla"
+msgstr ""
+
+msgid "jobs via KamKarao"
+msgstr "KamKarao से काम"
+
+msgid "join request"
+msgstr ""
+
+msgid "join requests"
+msgstr ""
+
+msgid "km"
+msgstr "किमी"
+
+msgid "km away"
+msgstr "किमी दूर"
+
+msgid "last 4 digits of ID"
+msgstr ""
+
+msgid "lead"
+msgstr ""
+
+msgid "leads"
+msgstr ""
+
+msgid "link"
+msgstr ""
+
+msgid "live"
+msgstr ""
+
+msgid "met in person"
+msgstr "खुद मिलकर"
+
+msgid "mobile number"
+msgstr ""
+
+msgid "mohalla"
+msgstr ""
+
+msgid "mohallas"
+msgstr ""
+
+msgid "mohallas covered"
+msgstr "मोहल्ले"
+
+msgid "name"
+msgstr ""
+
+msgid "name (English)"
+msgstr ""
+
+msgid "name (Hindi)"
+msgstr ""
+
+msgid "nearest to %(a)s first"
+msgstr "%(a)s के सबसे पास वाले पहले"
+
+msgid "other work"
+msgstr ""
+
+msgid "phone verified by OTP"
+msgstr ""
+
+msgid "price from (₹)"
+msgstr ""
+
+msgid "price per month (₹)"
+msgstr ""
+
+msgid "profile photo"
+msgstr ""
+
+msgid "provider"
+msgstr ""
+
+msgid "providers"
+msgstr ""
+
+msgid "rate card item"
+msgstr ""
+
+msgid "rate card items"
+msgstr ""
+
+msgid "rating"
+msgstr ""
+
+msgid "rating link sent"
+msgstr ""
+
+msgid "ratings"
+msgstr ""
+
+msgid "review"
+msgstr ""
+
+msgid "right in your mohalla"
+msgstr "आपके मोहल्ले में"
+
+msgid "service"
+msgstr ""
+
+msgid "services"
+msgstr ""
+
+msgid "shop name"
+msgstr ""
+
+msgid "short intro (English)"
+msgstr ""
+
+msgid "short intro (Hindi)"
+msgstr ""
+
+msgid "show review text"
+msgstr ""
+
+msgid "sub-line (English)"
+msgstr ""
+
+msgid "sub-line (Hindi)"
+msgstr ""
+
+msgid "sub-service"
+msgstr ""
+
+msgid "sub-services"
+msgstr ""
+
+msgid "tel:9876543210, https://wa.me/919876543210 or a website"
+msgstr ""
+
+msgid "travels to"
+msgstr ""
+
+msgid "upheld after hearing both sides"
+msgstr ""
+
+msgid "what happened"
+msgstr ""
+
+msgid "what work"
+msgstr ""
+
+msgid "work request"
+msgstr ""
+
+msgid "work requests (काम बताओ)"
+msgstr ""
+
+msgid "years experience"
+msgstr "साल का अनुभव"
+
+msgid "years of experience"
+msgstr ""
+
+msgid "Continue"
+msgstr "आगे बढ़ें"
+
+msgid ""
+"Enter your number once. We ask so that workers get genuine calls and we can "
+"ask you for a rating later. We never show your number to anyone."
+msgstr ""
+"एक बार अपना नंबर डालें। इससे कारीगरों को असली कॉल मिलते हैं और हम बाद में "
+"आपसे रेटिंग पूछ सकते हैं। आपका नंबर हम किसी को नहीं दिखाते।"
+
+msgid "You stay logged in for 30 days."
+msgstr "30 दिन तक लॉगिन रहेंगे।"

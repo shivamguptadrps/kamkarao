@@ -1,0 +1,15 @@
+{% load i18n kk %}
+<div class="sheet-head">
+  <h2>{% translate "Enter the OTP" %}</h2>
+  <button class="icon-btn" type="button" data-sheet-close aria-label="{% translate "Close" %}">{% icon "x" %}</button>
+</div>
+<form class="stack gap-12" hx-post="{% url 'otp_verify' %}" hx-target="#sheet-body" hx-disabled-elt="find button">
+  <input type="hidden" name="next" value="{{ next }}">
+  <p class="muted">{% blocktranslate with ph=phone %}We sent a 4-digit OTP to +91 {{ ph }}.{% endblocktranslate %}
+    <button class="link-btn" type="button" hx-get="{% url 'login_sheet' %}?next={{ next|urlencode }}" hx-target="#sheet-body">{% translate "Change number" %}</button></p>
+  {% if dev_code %}<p class="alert alert-dev">{% translate "Test mode: no SMS is sent. Your OTP is" %} <b>{{ dev_code }}</b></p>{% endif %}
+  <label for="otp" class="sr-only">OTP</label>
+  <input id="otp" name="otp" class="input otp-input" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="4" placeholder="••••" data-otp required>
+  {% if error %}<p class="error">{{ error }}</p>{% endif %}
+  <button class="btn btn-lg btn-block" type="submit"><span class="spinner"></span><span class="btn-label">{% translate "Verify" %}</span></button>
+</form>

@@ -1,0 +1,55 @@
+# One small server (2 GB RAM is plenty) runs everything:
+#   db    – PostgreSQL with a persistent volume
+#   web   – Django + gunicorn
+#   caddy – free automatic HTTPS for your domain, serves uploaded photos
+#
+# On the server:  cp .env.example .env  (edit it)  then  docker compose up -d --build
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: kamkarao
+      POSTGRES_USER: kamkarao
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kamkarao"]
+      interval: 5s
+      retries: 10
+
+  web:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_URL: postgres://kamkarao:${POSTGRES_PASSWORD:-change-me}@db:5432/kamkarao
+      DEBUG: "False"
+    volumes:
+      - media:/app/media
+      - private_media:/app/private_media
+    depends_on:
+      db:
+        condition: service_healthy
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DOMAIN: ${DOMAIN:-kamkarao.com}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro,z
+      - media:/srv/media:ro
+      - caddy_data:/data
+    depends_on:
+      - web
+
+volumes:
+  pgdata:
+  media:
+  private_media:
+  caddy_data:

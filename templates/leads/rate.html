@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load i18n kk %}
+{% block title %}{% translate "How was the work?" %} | KamKarao{% endblock %}
+{% block head %}<meta name="robots" content="noindex">{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="form-card">
+    <section class="panel enter">
+      <div class="row gap-12" style="margin-bottom:16px">
+        {% include "partials/avatar.html" with p=p %}
+        <div class="stack"><span class="pname">{{ p.name }}</span><span class="small muted">{{ p.category.name }} · {{ lead.created_at|date:"j M" }}</span></div>
+      </div>
+      {% if thanks or already %}
+        <div class="center stack gap-8" style="align-items:center;padding:16px 0">
+          <span class="empty" style="border:0;padding:0;background:none"><span class="ic" style="background:#DCFCE7;color:var(--ok)">{% icon "check" "icon-lg" %}</span></span>
+          <h1 class="h2">{% translate "Thank you!" %}</h1>
+          <p class="muted">{% translate "Your answer helps other families in Banda choose the right worker." %}</p>
+          <a class="btn btn-dark" href="{% url 'home' %}" style="margin-top:8px">{% translate "Go to KamKarao" %}</a>
+        </div>
+      {% else %}
+      <form method="post" class="stack gap-16">
+        {% csrf_token %}
+        <h1 class="h3">{% translate "Did the work get done?" %}</h1>
+        <div class="stack gap-8">
+          {% for val, label in outcomes %}
+          <label class="choice"><input type="radio" name="outcome" value="{{ val }}" {% if val == "done" %}checked{% endif %} onchange="document.getElementById('stars-box').hidden = this.value !== 'done'"><span>{{ label }}</span></label>
+          {% endfor %}
+        </div>
+        <div id="stars-box" class="stack gap-12">
+          <p class="strong center">{% translate "How was the work?" %}</p>
+          <div class="star-input">
+            {% for n in "54321" %}<input type="radio" id="s{{ n }}" name="stars" value="{{ n }}"><label for="s{{ n }}" title="{{ n }}/5"><svg class="icon icon-fill" aria-hidden="true"><use href="#i-star"></use></svg><span class="sr-only">{{ n }}</span></label>{% endfor %}
+          </div>
+          <div class="field">
+            <label for="text">{% translate "Anything to tell others? (optional)" %}</label>
+            <textarea id="text" name="text" class="textarea" maxlength="400" placeholder="{% translate "e.g. Came on time and charged what he said" %}"></textarea>
+          </div>
+        </div>
+        {% if error %}<p class="error">{{ error }}</p>{% endif %}
+        <button class="btn btn-lg btn-block" type="submit">{% translate "Submit" %}</button>
+      </form>
+      {% endif %}
+    </section>
+  </div>
+</div>
+{% endblock %}

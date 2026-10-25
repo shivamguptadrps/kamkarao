@@ -1,0 +1,14 @@
+{$DOMAIN}, www.{$DOMAIN} {
+	encode zstd gzip
+
+	# Uploaded photos (provider photos, banners). ID photos are never in this folder.
+	handle_path /media/* {
+		root * /srv/media
+		header Cache-Control "public, max-age=2592000"
+		file_server
+	}
+
+	handle {
+		reverse_proxy web:8000
+	}
+}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load i18n kk %}
+{% block title %}{% translate "Kaam batao – tell us the work" %} | KamKarao{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="form-card">
+    {% if done %}
+    <section class="panel center stack gap-12 enter" style="align-items:center;padding:32px 20px">
+      <span class="empty"><span class="ic" style="background:#DCFCE7;color:var(--ok)">{% icon "check" "icon-lg" %}</span></span>
+      <h1 class="h2">{% translate "Request received" %}</h1>
+      <p>{% blocktranslate with no=done.number %}Your request number is <b>{{ no }}</b>.{% endblocktranslate %}</p>
+      <p class="muted">{% translate "Our team will talk to the right worker and arrange a call to your number soon." %}</p>
+      <a class="btn btn-dark" href="{% url 'home' %}">{% translate "Back to home" %}</a>
+    </section>
+    {% else %}
+    <section class="panel enter">
+      <span class="eyebrow">{% translate "Kaam batao" %}</span>
+      <h1 class="h2" style="margin:6px 0 6px">{% translate "Tell us the work" %}</h1>
+      <p class="muted" style="margin-bottom:18px">{% translate "Not sure whom to call? Describe the work. We pick the right worker and arrange the call." %}</p>
+      <form method="post" class="stack gap-16">
+        {% csrf_token %}
+        <div class="field">
+          <label for="text">{% translate "What work is needed?" %}</label>
+          <textarea id="text" name="text" class="textarea" maxlength="400" placeholder="{% translate "e.g. The bathroom tap is leaking and the geyser does not heat" %}" required>{{ form.text }}</textarea>
+        </div>
+        <div class="field">
+          <label for="area">{% translate "Mohalla" %}</label>
+          <select id="area" name="area">
+            <option value="">{% translate "Choose mohalla" %}</option>
+            {% for a in areas %}<option value="{{ a.pk }}" {% if form.area|stringformat:"s" == a.pk|stringformat:"s" %}selected{% endif %}>{{ a.name }}</option>{% endfor %}
+          </select>
+        </div>
+        <fieldset class="field" style="border:0;padding:0;margin:0">
+          <legend class="label" style="margin-bottom:6px">{% translate "When do you need it?" %}</legend>
+          <div class="choice-grid">
+            {% for val, label in when_choices %}
+            <label class="choice"><input type="radio" name="when" value="{{ val }}" {% if form.when == val or not form.when and val == "today" %}checked{% endif %}><span>{% translate label %}</span></label>
+            {% endfor %}
+          </div>
+        </fieldset>
+        <div class="field">
+          <label for="phone">{% translate "Your mobile number" %}</label>
+          <div class="input-phone"><span>+91</span><input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="14" value="{% if form.phone %}{{ form.phone }}{% elif customer %}{{ customer.phone }}{% endif %}" required></div>
+        </div>
+        {% if error %}<p class="error">{{ error }}</p>{% endif %}
+        <button class="btn btn-lg btn-block" type="submit">{% translate "Send request" %}{% icon "arrow" %}</button>
+      </form>
+    </section>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

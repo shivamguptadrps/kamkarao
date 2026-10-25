@@ -1,0 +1,129 @@
+{% extends "admin/base.html" %}
+{% comment %}
+  Admin home = the KamKarao dashboard. Numbers come from
+  apps.core.admin_views.dashboard_callback. Styles: static/kk-admin.css
+{% endcomment %}
+{% load i18n %}
+
+{% block title %}Dashboard | {{ site_title }}{% endblock %}
+{% block branding %}{% include "unfold/helpers/site_branding.html" %}{% endblock %}
+
+{% block content %}
+<div class="kk-dash">
+
+  <div class="kk-hello">
+    <div>
+      <span class="kk-badge">Operations board</span>
+      <h1>Ready for today's work{% if user.first_name %}, {{ user.first_name }}{% endif %}</h1>
+      <p>{{ today|date:"l, j F" }} · keep approvals, calls, and follow-ups moving.</p>
+    </div>
+    <div class="kk-quick">
+      {% if perms.providers.add_provider %}
+      <a class="kk-btn kk-btn-primary" href="{% url 'admin:providers_provider_add' %}">
+        <span class="material-symbols-outlined">person_add</span>Add a worker</a>
+      {% endif %}
+      {% if perms.ads.add_banner %}
+      <a class="kk-btn" href="{% url 'admin:ads_banner_add' %}">
+        <span class="material-symbols-outlined">campaign</span>Add a banner</a>
+      {% endif %}
+      <a class="kk-btn" href="/" target="_blank">
+        <span class="material-symbols-outlined">open_in_new</span>View website</a>
+    </div>
+  </div>
+
+  <h2 class="kk-h2">Priority queue</h2>
+  <div class="kk-todo">
+    <a class="kk-task {% if kpi.join_requests %}is-hot{% endif %}" href="{% url 'admin:providers_joinrequest_changelist' %}?handled__exact=0">
+      <span class="material-symbols-outlined kk-ico">call</span>
+      <b>{{ kpi.join_requests }}</b>
+      <span>Join requests to call back</span>
+    </a>
+    <a class="kk-task {% if kpi.drafts %}is-hot{% endif %}" href="{% url 'admin:providers_provider_changelist' %}?status__exact=draft">
+      <span class="material-symbols-outlined kk-ico">pending_actions</span>
+      <b>{{ kpi.drafts }}</b>
+      <span>Workers waiting for approval</span>
+    </a>
+    <a class="kk-task {% if kpi.open_requests %}is-hot{% endif %}" href="{% url 'admin:leads_workrequest_changelist' %}?status__exact=new">
+      <span class="material-symbols-outlined kk-ico">assignment</span>
+      <b>{{ kpi.open_requests }}</b>
+      <span>“Kaam batao” to match</span>
+    </a>
+    <a class="kk-task {% if kpi.complaints %}is-bad{% endif %}" href="{% url 'admin:leads_complaint_changelist' %}?resolved__exact=0">
+      <span class="material-symbols-outlined kk-ico">report</span>
+      <b>{{ kpi.complaints }}</b>
+      <span>Open complaints</span>
+    </a>
+    <a class="kk-task {% if kpi.paused %}is-hot{% endif %}" href="{% url 'admin:providers_provider_changelist' %}?status__exact=paused">
+      <span class="material-symbols-outlined kk-ico">pause_circle</span>
+      <b>{{ kpi.paused }}</b>
+      <span>Paused workers (missed calls)</span>
+    </a>
+  </div>
+
+  <div class="kk-stats">
+    <div class="kk-stat"><b>{{ kpi.leads_today }}</b><span>Calls today</span></div>
+    <div class="kk-stat"><b>{{ kpi.leads_week }}</b><span>Calls, last 7 days</span></div>
+    <div class="kk-stat"><b>{% if kpi.done_rate is not None %}{{ kpi.done_rate }}%{% else %}—{% endif %}</b><span>Calls that became work</span></div>
+    <div class="kk-stat"><b>{% if kpi.answer_rate is not None %}{{ kpi.answer_rate }}%{% else %}—{% endif %}</b><span>Calls answered by workers</span></div>
+    <div class="kk-stat"><b>{{ kpi.live }}</b><span>Live workers</span></div>
+    <div class="kk-stat"><b>{{ kpi.customers }}</b><span>Customers</span></div>
+  </div>
+
+  <h2 class="kk-h2">How the business is doing</h2>
+
+  <div class="kk-cols">
+    <section class="kk-card kk-wide">
+      <h3>Calls per day <small>last 14 days</small></h3>
+      <div class="kk-bars">{% for s in series %}<div class="kk-bar" style="height:{{ s.pct }}%" title="{{ s.day|date:'j M' }}: {{ s.n }}"><em>{% if s.n %}{{ s.n }}{% endif %}</em></div>{% endfor %}</div>
+      <div class="kk-days">{% for s in series %}<span>{{ s.day|date:"j" }}</span>{% endfor %}</div>
+    </section>
+
+    <section class="kk-card">
+      <h3>Ask for a rating <small>send on WhatsApp</small></h3>
+      <ul class="kk-list">
+        {% for l in to_follow %}
+        <li><span>{{ l.customer.phone }}<small>{{ l.provider.name_en }} · {{ l.created_at|date:"j M" }}</small></span>
+          <a class="kk-pill kk-wa" href="{{ l.followup_whatsapp_url }}" target="_blank">Send ↗</a></li>
+        {% empty %}<li class="kk-empty">Nothing pending. 🎉</li>{% endfor %}
+      </ul>
+      {% if to_follow %}<p class="kk-note">After sending, tick “rating link sent” in Calls.</p>{% endif %}
+    </section>
+
+    <section class="kk-card">
+      <h3>Workers missing calls</h3>
+      <ul class="kk-list">
+        {% for p in missing %}
+        <li><a href="{% url 'admin:providers_provider_change' p.pk %}">{{ p.name_en }}<small>{{ p.category.name_en }}</small></a>
+          <span class="kk-pill kk-warn">{{ p.missed_streak }} missed</span></li>
+        {% empty %}<li class="kk-empty">Everyone is answering. 👍</li>{% endfor %}
+      </ul>
+    </section>
+
+    <section class="kk-card">
+      <h3>Calls by service <small>7 days</small></h3>
+      <ul class="kk-list">
+        {% for r in by_category %}<li><span>{{ r.provider__category__name_en }}</span><b>{{ r.n }}</b></li>
+        {% empty %}<li class="kk-empty">No calls yet.</li>{% endfor %}
+      </ul>
+    </section>
+
+    <section class="kk-card">
+      <h3>Calls by mohalla <small>7 days</small></h3>
+      <ul class="kk-list">
+        {% for r in by_area %}<li><span>{{ r.area__name_en|default:"Not chosen" }}</span><b>{{ r.n }}</b></li>
+        {% empty %}<li class="kk-empty">No calls yet.</li>{% endfor %}
+      </ul>
+    </section>
+
+    <section class="kk-card">
+      <h3>Banners this month</h3>
+      <ul class="kk-list">
+        {% for b in banners %}
+        <li><a href="{% url 'admin:ads_banner_change' b.pk %}">{{ b.shop_name }}<small>{{ b.get_placement_display }} · ends {{ b.ends_on|date:"j M" }}</small></a>
+          <span class="kk-num">{{ b.v|default:0 }} views · {{ b.c|default:0 }} clicks</span></li>
+        {% empty %}<li class="kk-empty">No banners yet.</li>{% endfor %}
+      </ul>
+    </section>
+  </div>
+</div>
+{% endblock %}

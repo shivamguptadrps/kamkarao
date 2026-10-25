@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n kk %}
+{% block title %}{% translate "My contacts" %} | KamKarao{% endblock %}
+{% block head %}<meta name="robots" content="noindex">{% endblock %}
+{% block content %}
+<div class="container" style="max-width:760px;padding-top:24px;padding-bottom:24px">
+  <div class="row between gap-12 wrap" style="margin-bottom:16px">
+    <div class="stack"><h1 class="h2">{% translate "My contacts" %}</h1><p class="muted">+91 {{ customer.phone }}</p></div>
+    <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="btn btn-ghost btn-sm" type="submit">{% icon "logout" "icon-sm" %}{% translate "Logout" %}</button></form>
+  </div>
+  <div class="stack gap-12">
+    {% for lead in leads %}
+      {% with p=lead.provider %}
+      <div class="panel row gap-12 reveal" style="--i:{{ forloop.counter0 }};padding:14px">
+        {% include "partials/avatar.html" with p=p %}
+        <div class="stack" style="flex:1;min-width:0">
+          <a class="pname" href="{{ p.get_absolute_url }}">{{ p.name }}</a>
+          <span class="small muted">{{ p.category.name }} · {{ lead.created_at|date:"j M, g:i A" }}</span>
+          <span class="small strong">{{ p.phone_pretty }}</span>
+        </div>
+        <div class="stack gap-8" style="align-items:flex-end">
+          <a class="btn btn-sm btn-dark" href="tel:+91{{ p.phone }}" aria-label="{% translate "Call" %} {{ p.name }}">{% icon "phone" "icon-sm" %}</a>
+          {% if lead.outcome == "unknown" %}<a class="link-btn small" href="{% url 'rate' lead.token %}">{% translate "Rate" %}</a>{% endif %}
+        </div>
+      </div>
+      {% endwith %}
+    {% empty %}
+      <div class="empty"><div class="ic">{% icon "phone" "icon-lg" %}</div><p class="muted">{% translate "You have not contacted anyone yet." %}</p><a class="btn" style="margin-top:12px" href="{% url 'home' %}#services">{% translate "Find a worker" %}</a></div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

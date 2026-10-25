@@ -1,0 +1,12 @@
+{% load i18n %}
+<form class="area-list" method="post" action="{% url 'area_set' %}" hx-post="{% url 'area_set' %}">
+  {% csrf_token %}
+  <input type="hidden" name="next" value="{{ next }}">
+  {% for a in areas %}
+  <button type="submit" name="area" value="{{ a.pk }}" data-area-id="{{ a.pk }}" class="area-btn{% if current_area and current_area.pk == a.pk %} is-on{% endif %}">
+    <span>{{ a.name }}</span><small>{% if LANGUAGE_CODE == "en" %}{{ a.name_hi }}{% else %}{{ a.name_en }}{% endif %}</small>
+  </button>
+  {% empty %}
+  <p class="muted" style="grid-column:1/-1">{% translate "No mohalla found with that name." %}</p>
+  {% endfor %}
+</form>

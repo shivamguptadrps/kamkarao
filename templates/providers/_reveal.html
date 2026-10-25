@@ -1,0 +1,25 @@
+{% load i18n kk %}
+<div class="sheet-head">
+  <div class="row gap-12" style="min-width:0">
+    {% include "partials/avatar.html" with p=p %}
+    <div class="stack" style="min-width:0"><span class="pname">{{ p.name }}</span><span class="small muted">{{ p.category.name }} · {{ p.area.name }}</span></div>
+  </div>
+  <button class="icon-btn" type="button" data-sheet-close aria-label="{% translate "Close" %}">{% icon "x" %}</button>
+</div>
+<div class="stack gap-12 swap-in">
+  <div class="number-reveal">
+    <p class="small muted">{% if mode == "wa" %}{% translate "WhatsApp this number" %}{% else %}{% translate "Call this number" %}{% endif %}</p>
+    <p class="num">{{ p.phone_pretty }}</p>
+    <button class="link-btn" type="button" data-copy="+91{{ p.phone }}" data-done="{% translate "Number copied" %}">{% icon "copy" "icon-sm" %}{% translate "Copy number" %}</button>
+  </div>
+  {% if mode == "wa" %}
+    {% blocktranslate asvar wa_text with name=p.first_name work=p.category.name %}Namaste {{ name }} ji, I got your number from KamKarao. I need {{ work }} work.{% endblocktranslate %}
+    <div class="wa-preview">{{ wa_text }}{% if area %} ({{ area.name }}){% endif %}</div>
+    <a class="btn btn-wa btn-lg btn-block" href="https://wa.me/91{{ p.wa_number }}?text={{ wa_text|urlencode }}{% if area %}%20({{ area.name|urlencode }}){% endif %}" target="_blank" rel="noopener">{% icon "wa" %}{% translate "Open WhatsApp" %}</a>
+    <a class="btn btn-ghost btn-block" href="tel:+91{{ p.phone }}">{% icon "phone" %}{% translate "Or call instead" %}</a>
+  {% else %}
+    <a class="btn btn-dark btn-lg btn-block" href="tel:+91{{ p.phone }}">{% icon "phone" %}{% translate "Call now" %}</a>
+    <a class="btn btn-ghost btn-block" href="https://wa.me/91{{ p.wa_number }}" target="_blank" rel="noopener">{% icon "wa" %}{% translate "Or WhatsApp instead" %}</a>
+  {% endif %}
+  <p class="tiny muted center">{% translate "Tomorrow we will ask on WhatsApp whether the work got done, so your rating helps others." %}</p>
+</div>

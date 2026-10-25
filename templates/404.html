@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n kk %}
+{% block title %}{% translate "Page not found" %} | KamKarao{% endblock %}
+{% block content %}
+<div class="container" style="padding:48px 16px">
+  <div class="empty">
+    <div class="ic">{% icon "search" "icon-lg" %}</div>
+    <h1 class="h3">{% translate "Page not found" %}</h1>
+    <p class="muted" style="margin:6px 0 16px">{% translate "This page does not exist, or the worker is no longer listed." %}</p>
+    <a class="btn" href="/">{% translate "Back to home" %}</a>
+  </div>
+</div>
+{% endblock %}

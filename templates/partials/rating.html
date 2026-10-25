@@ -1,0 +1,1 @@
+{% load i18n kk %}{% if p.is_new %}<span class="badge b-new">{% icon "sparkle" %}{% translate "New" %}</span>{% else %}<span class="rating">{% icon "star" "icon-sm icon-fill" %}{{ p.rating_avg|floatformat:1 }}<span class="cnt">({% blocktranslate count n=p.rating_count %}{{ n }} rating{% plural %}{{ n }} ratings{% endblocktranslate %})</span></span>{% endif %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load i18n kk %}
+{% block title %}{% translate "Join KamKarao as a worker" %}{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="form-card">
+    {% if done %}
+    <section class="panel center stack gap-12 enter" style="align-items:center;padding:32px 20px">
+      <span class="empty" style="border:0;padding:0;background:none"><span class="ic" style="background:#DCFCE7;color:var(--ok)">{% icon "check" "icon-lg" %}</span></span>
+      <h1 class="h2">{% translate "Thank you! Your name is noted." %}</h1>
+      <p class="muted">{% translate "Our team will call you within 2 days to fix a time to meet. Keep a government ID and a photo ready." %}</p>
+      <a class="btn btn-dark" href="{% url 'home' %}">{% translate "Back to home" %}</a>
+    </section>
+    {% else %}
+    <section class="panel enter">
+      <span class="eyebrow">{% translate "For workers" %}</span>
+      <h1 class="h2" style="margin:6px 0">{% translate "Get work from your own area" %}</h1>
+      <ul class="check-list" style="margin:12px 0 20px">
+        <li>{% icon "check" %}<span>{% translate "Customers call you directly. No commission on your work." %}</span></li>
+        <li>{% icon "check" %}<span>{% translate "Free for the first 6 months." %}</span></li>
+        <li>{% icon "check" %}<span>{% translate "Our team comes to you and makes your profile." %}</span></li>
+      </ul>
+      <form method="post" class="stack gap-16">
+        {% csrf_token %}
+        <div class="field"><label for="name">{% translate "Your name" %}</label><input id="name" name="name" class="input" maxlength="120" value="{{ form.name }}" required></div>
+        <div class="field"><label for="phone">{% translate "Mobile number" %}</label><div class="input-phone"><span>+91</span><input id="phone" name="phone" type="tel" inputmode="numeric" maxlength="14" value="{{ form.phone }}" required></div></div>
+        <div class="field">
+          <label for="category">{% translate "What work do you do?" %}</label>
+          <select id="category" name="category">
+            {% for c in categories %}<option value="{{ c.pk }}" {% if form.category == c.pk|stringformat:"s" %}selected{% endif %}>{{ c.name }}</option>{% endfor %}
+            <option value="">{% translate "Something else" %}</option>
+          </select>
+        </div>
+        <div class="field"><label for="other_work">{% translate "If something else, write it here" %}</label><input id="other_work" name="other_work" class="input" maxlength="120" value="{{ form.other_work }}"></div>
+        <div class="field">
+          <label for="area">{% translate "Your mohalla" %}</label>
+          <select id="area" name="area"><option value="">—</option>{% for a in areas %}<option value="{{ a.pk }}">{{ a.name }}</option>{% endfor %}</select>
+        </div>
+        {% if error %}<p class="error">{{ error }}</p>{% endif %}
+        <button class="btn btn-lg btn-block" type="submit">{% translate "Send my name" %}</button>
+        <p class="tiny muted center">{% translate "This only asks for a callback. Your profile goes live after our team meets you." %}</p>
+      </form>
+    </section>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

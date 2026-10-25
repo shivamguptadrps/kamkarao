@@ -1,0 +1,66 @@
+{% extends "admin/base_site.html" %}
+{% block extrastyle %}{{ block.super }}
+<style>
+  .kk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; margin: 16px 0 24px; }
+  .kk-tile { background: var(--body-bg); border: 1px solid var(--hairline-color); border-radius: 12px; padding: 14px; }
+  .kk-tile b { display: block; font-size: 26px; line-height: 1.1; color: var(--body-fg); }
+  .kk-tile span { color: var(--body-quiet-color); font-size: 13px; }
+  .kk-tile.warn b { color: #B45309; }
+  .kk-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+  .kk-card { border: 1px solid var(--hairline-color); border-radius: 12px; padding: 16px; }
+  .kk-card h2 { margin: 0 0 12px; font-size: 15px; background: none; color: var(--body-fg); padding: 0; }
+  .kk-bars { display: flex; align-items: flex-end; gap: 4px; height: 140px; padding-top: 18px; }
+  .kk-bar { flex: 1; background: #0F766E; border-radius: 4px 4px 0 0; position: relative; min-height: 2px; }
+  .kk-bar em { position: absolute; top: -17px; left: 0; right: 0; text-align: center; font-style: normal; font-size: 11px; color: var(--body-quiet-color); }
+  .kk-days { display: flex; gap: 4px; font-size: 10px; color: var(--body-quiet-color); margin-top: 4px; }
+  .kk-days span { flex: 1; text-align: center; }
+  .kk-card table { width: 100%; }
+  .kk-card td { padding: 6px 4px; }
+</style>
+{% endblock %}
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="{% url 'admin:index' %}">Home</a> › Dashboard</div>{% endblock %}
+{% block content %}
+
+<div class="kk-grid">
+  <div class="kk-tile"><b>{{ kpi.leads_today }}</b><span>Leads today</span></div>
+  <div class="kk-tile"><b>{{ kpi.leads_week }}</b><span>Leads, last 7 days</span></div>
+  <div class="kk-tile"><b>{% if kpi.done_rate is not None %}{{ kpi.done_rate }}%{% else %}—{% endif %}</b><span>Leads that became jobs (followed up)</span></div>
+  <div class="kk-tile"><b>{% if kpi.answer_rate is not None %}{{ kpi.answer_rate }}%{% else %}—{% endif %}</b><span>Calls answered</span></div>
+  <div class="kk-tile"><b>{{ kpi.live }}</b><span>Live providers</span></div>
+  <div class="kk-tile {% if kpi.drafts %}warn{% endif %}"><b>{{ kpi.drafts }}</b><span><a href="{% url 'admin:providers_provider_changelist' %}?status__exact=draft">Drafts to approve</a></span></div>
+  <div class="kk-tile {% if kpi.paused %}warn{% endif %}"><b>{{ kpi.paused }}</b><span><a href="{% url 'admin:providers_provider_changelist' %}?status__exact=paused">Paused providers</a></span></div>
+  <div class="kk-tile"><b>{{ kpi.customers }}</b><span>Verified customers</span></div>
+  <div class="kk-tile {% if kpi.open_requests %}warn{% endif %}"><b>{{ kpi.open_requests }}</b><span><a href="{% url 'admin:leads_workrequest_changelist' %}?status__exact=new">Kaam batao to match</a></span></div>
+  <div class="kk-tile {% if kpi.join_requests %}warn{% endif %}"><b>{{ kpi.join_requests }}</b><span><a href="{% url 'admin:providers_joinrequest_changelist' %}?handled__exact=0">Join requests to call</a></span></div>
+  <div class="kk-tile {% if kpi.complaints %}warn{% endif %}"><b>{{ kpi.complaints }}</b><span><a href="{% url 'admin:leads_complaint_changelist' %}?resolved__exact=0">Open complaints</a></span></div>
+</div>
+
+<div class="kk-cols">
+  <div class="kk-card">
+    <h2>Leads per day (14 days)</h2>
+    <div class="kk-bars">{% for s in series %}<div class="kk-bar" style="height:{{ s.pct }}%" title="{{ s.day|date:'j M' }}: {{ s.n }}"><em>{{ s.n }}</em></div>{% endfor %}</div>
+    <div class="kk-days">{% for s in series %}<span>{{ s.day|date:"j" }}</span>{% endfor %}</div>
+  </div>
+  <div class="kk-card">
+    <h2>Ask these customers for a rating (WhatsApp)</h2>
+    <table>{% for l in to_follow %}<tr><td>{{ l.created_at|date:"j M" }}</td><td>{{ l.customer.phone }}</td><td>{{ l.provider.name_en }}</td><td><a href="{{ l.followup_whatsapp_url }}" target="_blank">Send ↗</a></td></tr>{% empty %}<tr><td>Nothing pending.</td></tr>{% endfor %}</table>
+    <p style="font-size:12px;color:var(--body-quiet-color)">After sending, tick “rating link sent” on the lead.</p>
+  </div>
+  <div class="kk-card">
+    <h2>Leads by service (7 days)</h2>
+    <table>{% for r in by_category %}<tr><td>{{ r.provider__category__name_en }}</td><td style="text-align:right"><b>{{ r.n }}</b></td></tr>{% empty %}<tr><td>No leads yet.</td></tr>{% endfor %}</table>
+  </div>
+  <div class="kk-card">
+    <h2>Leads by mohalla (7 days)</h2>
+    <table>{% for r in by_area %}<tr><td>{{ r.area__name_en|default:"Not chosen" }}</td><td style="text-align:right"><b>{{ r.n }}</b></td></tr>{% empty %}<tr><td>No leads yet.</td></tr>{% endfor %}</table>
+  </div>
+  <div class="kk-card">
+    <h2>Providers missing calls</h2>
+    <table>{% for p in missing %}<tr><td><a href="{% url 'admin:providers_provider_change' p.pk %}">{{ p.name_en }}</a></td><td>{{ p.category.name_en }}</td><td style="text-align:right;color:#B45309"><b>{{ p.missed_streak }} missed</b></td></tr>{% empty %}<tr><td>Everyone is answering.</td></tr>{% endfor %}</table>
+  </div>
+  <div class="kk-card">
+    <h2>Banners this month</h2>
+    <table>{% for b in banners %}<tr><td><a href="{% url 'admin:ads_banner_change' b.pk %}">{{ b.shop_name }}</a></td><td>{{ b.get_placement_display }}</td><td>{{ b.v|default:0 }} views</td><td>{{ b.c|default:0 }} clicks</td><td>ends {{ b.ends_on|date:"j M" }}</td></tr>{% empty %}<tr><td>No banners.</td></tr>{% endfor %}</table>
+  </div>
+</div>
+{% endblock %}

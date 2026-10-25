@@ -1,0 +1,22 @@
+{% load i18n kk %}{% if banners %}
+<div class="banners{% if banners|length > 1 %} two{% endif %}">
+  {% for b in banners %}
+    {% if b.image %}
+    <a class="banner img reveal" href="{{ b.click_url }}" rel="sponsored noopener" {% if b.link|slice:':4' == 'http' %}target="_blank"{% endif %}>
+      <img src="{{ b.image.url }}" alt="{{ b.shop_name }}: {{ b.title }}" loading="lazy">
+      <span class="ad-tag">{% translate "Ad" %}</span>
+    </a>
+    {% else %}
+    <a class="banner {{ b.theme }} reveal" href="{{ b.click_url }}" rel="sponsored noopener" {% if b.link|slice:':4' == 'http' %}target="_blank"{% endif %}>
+      <span class="ad-tag">{% translate "Ad" %}</span>
+      <span class="stack">
+        <span class="t">{{ b.title }}</span>
+        {% if b.subtitle %}<span class="s">{{ b.subtitle }}</span>{% endif %}
+        <span class="shop row gap-4">{% icon "store" "icon-sm" %}{{ b.shop_name }}</span>
+      </span>
+      <span class="cta">{{ b.cta }}</span>
+    </a>
+    {% endif %}
+  {% endfor %}
+</div>
+{% endif %}

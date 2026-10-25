@@ -1,0 +1,32 @@
+{% load i18n kk %}
+<article class="pcard reveal{% if p.is_featured %} featured{% endif %}" style="--i:{{ forloop.counter0|default:0 }}">
+  <div class="pcard-head">
+    {% include "partials/avatar.html" with p=p show_online=True %}
+    <div class="stack gap-4" style="min-width:0;flex:1">
+      <div class="row gap-8 wrap">
+        <h3 class="pname"><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></h3>
+        {% if p.is_verified %}<span class="badge b-ok" title="{% translate "ID and phone checked in person" %}">{% icon "shield" %}{% translate "Checked" %}</span>{% endif %}
+      </div>
+      <div class="pmeta">
+        <span class="row gap-4">{% icon "pin" "icon-sm" %}{{ p.area.name }}{% if p.distance_km is not None %} · {{ p.distance_km|km }} {% translate "km" %}{% endif %}</span>
+        <span>{% blocktranslate count y=p.experience_years %}{{ y }} yr exp{% plural %}{{ y }} yrs exp{% endblocktranslate %}</span>
+      </div>
+      {% include "partials/rating.html" %}
+    </div>
+  </div>
+  <div class="tags">
+    {% if p.is_featured %}<span class="badge b-feat">{% icon "award" %}{% translate "Featured" %}</span>{% endif %}
+    {% if p.same_area %}<span class="badge b-amber">{% icon "pin" %}{% translate "In your mohalla" %}</span>{% endif %}
+    {% if p.available_today %}<span class="badge b-brand">{% icon "clock" %}{% translate "Available today" %}</span>{% else %}<span class="badge b-grey">{% icon "clock" %}{% translate "Busy today" %}</span>{% endif %}
+    {% if p.gender == "f" %}<span class="badge b-rose">{% icon "woman" %}{% translate "Woman provider" %}</span>{% endif %}
+  </div>
+  {% with subs=p.subcategories.all %}{% if subs %}<p class="subs">{% for s in subs %}{{ s.name }}{% if not forloop.last %} · {% endif %}{% endfor %}</p>{% endif %}{% endwith %}
+  <div class="pcard-foot">
+    <span class="masked">{% icon "lock" "icon-sm" %}{{ p.phone_masked }}</span>
+    {% with r=p.category.rate_items.first %}{% if r %}<span class="price">{% translate "from" %} <b>₹{{ r.price_from }}</b></span>{% endif %}{% endwith %}
+  </div>
+  <div class="contact-btns">
+    <button class="btn btn-dark" type="button" hx-get="{% url 'provider_reveal' p.pk %}?mode=call" hx-target="#sheet-body">{% icon "phone" %}<span class="btn-label">{% translate "Call" %}</span></button>
+    <button class="btn btn-wa" type="button" hx-get="{% url 'provider_reveal' p.pk %}?mode=wa" hx-target="#sheet-body">{% icon "wa" %}<span class="btn-label">WhatsApp</span></button>
+  </div>
+</article>

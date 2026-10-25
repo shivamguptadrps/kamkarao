@@ -1,0 +1,20 @@
+{% load i18n kk %}
+<div class="sheet-head">
+  <h2>{% translate "Choose your mohalla" %}</h2>
+  <button class="icon-btn" type="button" data-sheet-close aria-label="{% translate "Close" %}">{% icon "x" %}</button>
+</div>
+<div class="stack gap-12">
+  <button class="btn btn-ghost btn-block" type="button" data-locate data-url="{% url 'area_nearest' %}"
+          data-finding="{% translate "Finding your location…" %}" data-found="{% translate "Nearest mohalla:" %}"
+          data-denied="{% translate "Location permission was not given. Please pick from the list." %}"
+          data-outside="{% translate "You seem to be outside Banda city. Please pick from the list." %}"
+          data-unsupported="{% translate "This phone cannot share location. Please pick from the list." %}">
+    {% icon "locate" %}{% translate "Use my location" %}
+  </button>
+  <p class="small muted center" data-locate-msg aria-live="polite">{% translate "Location is used only once to find the nearest mohalla. It is not saved." %}</p>
+  <label for="area-q" class="sr-only">{% translate "Search mohalla" %}</label>
+  <input id="area-q" class="input" type="search" name="q" placeholder="{% translate "Search mohalla, e.g. Katra" %}" autocomplete="off"
+         hx-get="{% url 'area_sheet' %}" hx-trigger="input changed delay:200ms" hx-target="#area-list" hx-vals='{"next": "{{ next|escapejs }}"}'>
+  <div id="area-list">{% include "core/_area_list.html" %}</div>
+  <p class="tiny muted center">{% translate "Now serving Banda city. Atarra, Baberu and Naraini coming soon." %}</p>
+</div>

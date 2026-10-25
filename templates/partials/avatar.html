@@ -1,0 +1,1 @@
+{% load kk %}<span class="avatar {{ size|default:'' }}" style="{{ p|avatar_style }}">{% if p.photo %}<img src="{{ p.photo.url }}" alt="" loading="lazy" width="96" height="96">{% else %}{{ p.initials }}{% endif %}{% if p.available_today and show_online %}<span class="online" title="Available today"></span>{% endif %}</span>
